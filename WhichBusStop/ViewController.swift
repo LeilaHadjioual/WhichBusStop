@@ -10,17 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 1000
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+        let api = Api()
+        //api.getStopPoint(longitude: longitude, latitude: latitude )
         
-      
     }
     
     func showAlert(title: String, message: String){

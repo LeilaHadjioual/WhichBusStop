@@ -9,21 +9,12 @@
 import UIKit
 import CoreLocation
 
-class ApiViewController: UIViewController, CLLocationManagerDelegate {
+class Api {
     
-    private func API () {
-        
-        let locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        
-        var currentLocation: CLLocation!
+    public func getStopPoint(longitude : Double, latitude : Double) {
 
-        if( CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() ==  .authorizedAlways){
-              currentLocation = locManager.location
-        }
-        
-        let position_longitude = 5.7289425//currenocation.coordinate.longitude
-        let position_latitude = 45.1859607//currentLocation.coordinate.latitude
+        let position_longitude = longitude//currenocation.coordinate.longitude
+        let position_latitude = latitude//currentLocation.coordinate.latitude
         
         let url = URL(string: "https://data.metromobilite.fr/api/linesNear/json?x=\(position_longitude)&y=\(position_latitude)&details=true")
                 
