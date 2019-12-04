@@ -15,6 +15,8 @@
 		4EF1BFF9239640CF003ACF24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF1BFF7239640CF003ACF24 /* LaunchScreen.storyboard */; };
 		4EF1C004239640CF003ACF24 /* WhichBusStopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1C003239640CF003ACF24 /* WhichBusStopTests.swift */; };
 		4EF1C00F239640CF003ACF24 /* WhichBusStopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1C00E239640CF003ACF24 /* WhichBusStopUITests.swift */; };
+		995536752396782A001F6051 /* ApiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995536742396782A001F6051 /* ApiViewController.swift */; };
+		9955367823967884001F6051 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955367723967884001F6051 /* Stop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		4EF1C00A239640CF003ACF24 /* WhichBusStopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhichBusStopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF1C00E239640CF003ACF24 /* WhichBusStopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhichBusStopUITests.swift; sourceTree = "<group>"; };
 		4EF1C010239640CF003ACF24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		995536742396782A001F6051 /* ApiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiViewController.swift; sourceTree = "<group>"; };
+		9955367723967884001F6051 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		4EF1BFEB239640CA003ACF24 /* WhichBusStop */ = {
 			isa = PBXGroup;
 			children = (
+				9955367623967870001F6051 /* Model */,
 				4EF1BFEC239640CA003ACF24 /* AppDelegate.swift */,
 				4EF1BFEE239640CA003ACF24 /* SceneDelegate.swift */,
 				4EF1BFF0239640CA003ACF24 /* ViewController.swift */,
@@ -106,6 +111,7 @@
 				4EF1BFF5239640CF003ACF24 /* Assets.xcassets */,
 				4EF1BFF7239640CF003ACF24 /* LaunchScreen.storyboard */,
 				4EF1BFFA239640CF003ACF24 /* Info.plist */,
+				995536742396782A001F6051 /* ApiViewController.swift */,
 			);
 			path = WhichBusStop;
 			sourceTree = "<group>";
@@ -126,6 +132,14 @@
 				4EF1C010239640CF003ACF24 /* Info.plist */,
 			);
 			path = WhichBusStopUITests;
+			sourceTree = "<group>";
+		};
+		9955367623967870001F6051 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9955367723967884001F6051 /* Stop.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +275,9 @@
 			files = (
 				4EF1BFF1239640CA003ACF24 /* ViewController.swift in Sources */,
 				4EF1BFED239640CA003ACF24 /* AppDelegate.swift in Sources */,
+				9955367823967884001F6051 /* Stop.swift in Sources */,
 				4EF1BFEF239640CA003ACF24 /* SceneDelegate.swift in Sources */,
+				995536752396782A001F6051 /* ApiViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
