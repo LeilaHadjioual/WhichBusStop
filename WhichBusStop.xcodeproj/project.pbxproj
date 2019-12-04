@@ -53,6 +53,7 @@
 		4EF1C010239640CF003ACF24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995536742396782A001F6051 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		9955367723967884001F6051 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		995CFBD62397C0AE00C70A6C /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../../../Downloads/mapbox-ios-sdk-5.5.0-dynamic/dynamic/Mapbox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 				4EF1C002239640CF003ACF24 /* WhichBusStopTests */,
 				4EF1C00D239640CF003ACF24 /* WhichBusStopUITests */,
 				4EF1BFEA239640CA003ACF24 /* Products */,
+				995CFBD52397C0AE00C70A6C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +144,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		995CFBD52397C0AE00C70A6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				995CFBD62397C0AE00C70A6C /* Mapbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +162,7 @@
 				4EF1BFE5239640C9003ACF24 /* Sources */,
 				4EF1BFE6239640C9003ACF24 /* Frameworks */,
 				4EF1BFE7239640C9003ACF24 /* Resources */,
+				995CFBD42397BFCD00C70A6C /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -267,6 +278,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		995CFBD42397BFCD00C70A6C /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4EF1BFE5239640C9003ACF24 /* Sources */ = {

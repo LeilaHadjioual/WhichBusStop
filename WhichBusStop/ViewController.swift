@@ -9,19 +9,19 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Contacts
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 1000
-        
+    let regionInMeters: Double = 100
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-        
-        
-        
+       
     }
     
     func showAlert(title: String, message: String){
@@ -87,8 +87,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated:true)
         let api = Api()
-        api.getStopPoint(longitude: center.longitude, latitude: center.latitude )
+        var stopPoints: [Stop]?
+        api.getStopPoint(longitude: center.longitude, latitude: center.latitude) { (stops) in
+            stopPoints = stops
+            
+            stops?.forEach({ (stop) in
+                let coordinates2D = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lon!)
+                let place = MKPlacemark(coordinate: coordinates2D)
+                self.mapView.addAnnotation(place)
+            })
+            
+       
         }
+        
+    }
     
     //verify differents permissions
     func locationManager(_ manager:CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){

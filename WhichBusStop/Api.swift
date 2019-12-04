@@ -11,12 +11,12 @@ import CoreLocation
 
 class Api {
     
-    public func getStopPoint(longitude : Double, latitude : Double) {
+    public func getStopPoint(longitude : Double, latitude : Double, completion: @escaping ([Stop]?) -> Void) {
 
         let position_longitude = longitude//currenocation.coordinate.longitude
         let position_latitude = latitude//currentLocation.coordinate.latitude
         
-        let url = URL(string: "https://data.metromobilite.fr/api/linesNear/json?x=\(position_longitude)&y=\(position_latitude)&details=true")
+        let url = URL(string: "https://data.metromobilite.fr/api/linesNear/json?x=\(position_longitude)&y=\(position_latitude)&dist=500&details=true")
                 
         let session = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             do {
@@ -24,9 +24,8 @@ class Api {
                     do {// Decode data to object
                         let jsonDecoder = JSONDecoder()
                         let stopsResult = try jsonDecoder.decode([Stop].self, from: dataResult)
+                        completion(stopsResult)
                         
-                        DispatchQueue.main.async {
-                        }
                     }
                     catch {
                         print("Error")
@@ -41,9 +40,11 @@ class Api {
             }
         }
         session.resume()
+        
     }
 }
 //45,18541716   -   5,72996383 //Chavant
 //45,19193413   -   5,72666532 //Jardin de ville
 //45,19130205   -   5,71517336 //Gare grenoble
+//45,14217067   -   5,74115298 //La casa
 
