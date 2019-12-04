@@ -37,6 +37,7 @@ xcuserdata/
 
 ## Other
 *.xcuserstate
+*/UserInterfaceState.xcuserstate
 
 ## Obj-C/Swift specific
 *.hmap
