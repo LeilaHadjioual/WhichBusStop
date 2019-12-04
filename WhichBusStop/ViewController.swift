@@ -19,8 +19,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-        let api = Api()
-        //api.getStopPoint(longitude: longitude, latitude: latitude )
+        
+        
         
     }
     
@@ -81,11 +81,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
 //update the position of the user when he move
-    func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]){
+    func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{return}
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated:true)
+        let api = Api()
+        api.getStopPoint(longitude: center.longitude, latitude: center.latitude )
         }
     
     //verify differents permissions

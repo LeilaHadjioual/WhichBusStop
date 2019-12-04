@@ -43,3 +43,7 @@ class Api {
         session.resume()
     }
 }
+//45,18541716   -   5,72996383 //Chavant
+//45,19193413   -   5,72666532 //Jardin de ville
+//45,19130205   -   5,71517336 //Gare grenoble
+
