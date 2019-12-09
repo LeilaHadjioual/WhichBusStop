@@ -16,7 +16,7 @@ class Api {
         let position_longitude = longitude//currenocation.coordinate.longitude
         let position_latitude = latitude//currentLocation.coordinate.latitude
         
-        let url = URL(string: "https://data.metromobilite.fr/api/linesNear/json?x=\(position_longitude)&y=\(position_latitude)&dist=500&details=true")
+        let url = URL(string: "https://data.metromobilite.fr/api/linesNear/json?x=\(position_longitude)&y=\(position_latitude)&dist=1000&details=true")
                 
         let session = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             do {
