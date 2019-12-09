@@ -22,6 +22,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+        
+        mapView.delegate = self
         //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173)
         //let destinationPoint = CLLocationCoordinate2D(latitude: 45.191587, longitude: 5.714554)
         //directionsRequest(source: sourcePoint, destination: destinationPoint)
@@ -99,14 +101,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             stops?.forEach({ (stop) in
                 let coordinates2D = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lon!)
-                let place = MKPlacemark(coordinate: coordinates2D)
-                self.mapView.addAnnotation(place)
-                
-                    
-                
-               
+                //let place = MKPlacemark(coordinate: coordinates2D)
+                //self.mapView.addAnnotation(place)
+                let stopName = stop.name
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinates2D
+                annotation.title = stopName
+                 annotation.subtitle = stop.lines?.joined(separator: ", ")
+                let coordinateRegion = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+
+                DispatchQueue.main.async {
+                    self.mapView.setRegion(coordinateRegion, animated: true)
+                    self.mapView.addAnnotation(annotation)
+                  
+                }
+                  
             })
-            
         }
     }
     
@@ -134,12 +144,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     self.mapView.addOverlay(route.polyline)
                     self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                     }
-                self.mapView.delegate = self
             }
+        self.mapView.removeOverlays(mapView.overlays)//clear line
     }
     
    
-    
+    //show and custom the line
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blue
@@ -148,7 +158,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     
-
+    //onclick on pine show itineraire
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation as? MKPointAnnotation {
+            let destinationPoint = annotation.coordinate
+            self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
+            
+        }
+        
+    }
     
 }
 
