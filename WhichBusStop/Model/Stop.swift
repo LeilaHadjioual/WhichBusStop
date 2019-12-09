@@ -14,11 +14,8 @@ public class Stop: Decodable {
     var lon: Double?
     var lat: Double?
     
-<<<<<<< HEAD
     init(name: String, lines: [String], lon: Double, lat: Double?) {
-=======
-    init(name: String, lon: Double, lat: Double?, lines: [String]) {
->>>>>>> itineraire
+
         self.name = name
         self.lines = lines
         self.lon = lon
