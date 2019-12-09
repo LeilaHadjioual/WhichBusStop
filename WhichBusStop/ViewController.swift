@@ -15,7 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173)
+    let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173) //pour tester l'itinéraire
     let regionInMeters: Double = 500
 
     
@@ -26,7 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173)
         //let destinationPoint = CLLocationCoordinate2D(latitude: 45.191587, longitude: 5.714554)
         //directionsRequest(source: sourcePoint, destination: destinationPoint)
-       
+
     }
     
     func showAlert(title: String, message: String){
@@ -100,12 +100,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             stops?.forEach({ (stop) in
                 let coordinates2D = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lon!)
-                let place = MKPlacemark(coordinate: coordinates2D)
-                self.mapView.addAnnotation(place)
-            
-                let stopName = stop.name
-                
+                //let place = MKPlacemark(coordinate: coordinates2D)
+                //self.mapView.addAnnotation(place)
                 let annotation = MKPointAnnotation()
+                let stopName = stop.name
                 annotation.coordinate = coordinates2D
                 annotation.title = stopName
                 annotation.subtitle = stop.lines?.joined(separator: ", ")
@@ -114,7 +112,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 DispatchQueue.main.async {
                     self.mapView.setRegion(coordinateRegion, animated: true)
                     self.mapView.addAnnotation(annotation)
+                  
                 }
+                  
             })
         }
     }
@@ -147,8 +147,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
     }
     
-   
-    
+    //custom line itineraire
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blue
@@ -156,8 +155,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return renderer
     }
     
-    
-
+    //show itineraire on clic pine
+   
+    /*func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+           if view is MKPointAnnotation {
+               let destinationPoint = view.coordinate
+               self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
+       
+           }
+       
+       }*/
     
 }
 
