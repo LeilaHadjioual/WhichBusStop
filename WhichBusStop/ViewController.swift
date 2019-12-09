@@ -15,7 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 100
+    let regionInMeters: Double = 500
     
     
     override func viewDidLoad() {
@@ -93,13 +93,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             
             stops?.forEach({ (stop) in
                 let coordinates2D = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lon!)
-                let place = MKPlacemark(coordinate: coordinates2D)
-                self.mapView.addAnnotation(place)
+                let stopName = stop.name
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinates2D
+                annotation.title = stopName
+                annotation.subtitle = stop.lines?.joined(separator: ", ")
+                let coordinateRegion = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+
+                DispatchQueue.main.async {
+                    self.mapView.setRegion(coordinateRegion, animated: true)
+                    self.mapView.addAnnotation(annotation)
+                }
             })
-            
-       
         }
-        
     }
     
     //verify differents permissions

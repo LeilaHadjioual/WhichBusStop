@@ -10,11 +10,13 @@ import Foundation
 
 public class Stop: Decodable {
     var name: String?
+    var lines: [String]?
     var lon: Double?
     var lat: Double?
     
-    init(name: String, lon: Double, lat: Double?) {
+    init(name: String, lines: [String], lon: Double, lat: Double?) {
         self.name = name
+        self.lines = lines
         self.lon = lon
         self.lat = lat
     }
