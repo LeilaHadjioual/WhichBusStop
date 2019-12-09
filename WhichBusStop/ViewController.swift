@@ -14,6 +14,8 @@ import Contacts
 class ViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 500
     
@@ -21,6 +23,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+        
+        // Agrandir zone blanche en bas
+        bottomViewHeight.constant = 0
        
     }
     
@@ -94,11 +99,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             stops?.forEach({ (stop) in
                 let coordinates2D = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lon!)
                 let stopName = stop.name
-                
+                let busName = stop.lines?.joined(separator: ", ")
                 let annotation = MKPointAnnotation()
+                
                 annotation.coordinate = coordinates2D
                 annotation.title = stopName
-                annotation.subtitle = stop.lines?.joined(separator: ", ")
+                annotation.subtitle = busName
                 let coordinateRegion = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
 
                 DispatchQueue.main.async {
