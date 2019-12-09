@@ -15,6 +15,7 @@ public class Stop: Decodable {
     var lat: Double?
     
     init(name: String, lines: [String], lon: Double, lat: Double?) {
+
         self.name = name
         self.lines = lines
         self.lon = lon
