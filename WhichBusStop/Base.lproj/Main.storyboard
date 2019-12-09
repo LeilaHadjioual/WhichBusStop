@@ -18,23 +18,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vUi-An-NMR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Vo-A7-8DM">
-                                <rect key="frame" x="131.5" y="811" width="151" height="32"/>
-                                <segments>
-                                    <segment title="Standard"/>
-                                    <segment title="Satellite"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Vo-A7-8DM" secondAttribute="bottom" constant="20" id="Hxq-tu-7Oq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vUi-An-NMR" secondAttribute="bottom" id="TC7-3y-lGH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Vo-A7-8DM" secondAttribute="bottom" constant="20" id="Ugy-r2-wM7"/>
                             <constraint firstItem="vUi-An-NMR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Yfd-bN-RnS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vUi-An-NMR" secondAttribute="trailing" id="a9b-nA-fB4"/>
                             <constraint firstItem="vUi-An-NMR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="p3E-or-Pt3"/>
-                            <constraint firstItem="8Vo-A7-8DM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rVk-tK-Br7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

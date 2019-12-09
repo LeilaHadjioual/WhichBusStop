@@ -23,6 +23,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+        
+        mapView.delegate = self
         //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173)
         //let destinationPoint = CLLocationCoordinate2D(latitude: 45.191587, longitude: 5.714554)
         //directionsRequest(source: sourcePoint, destination: destinationPoint)
@@ -143,28 +145,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     self.mapView.addOverlay(route.polyline)
                     self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                     }
-                self.mapView.delegate = self
             }
+        self.mapView.removeOverlays(mapView.overlays)//clear line
     }
     
-    //custom line itineraire
+
+   
+    //show and custom the line
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blue
         renderer.lineWidth = 4.0
         return renderer
     }
+
     
-    //show itineraire on clic pine
-   
-    /*func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-           if view is MKPointAnnotation {
-               let destinationPoint = view.coordinate
-               self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
-       
-           }
-       
-       }*/
+    //onclick on pine show itineraire
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation as? MKPointAnnotation {
+            let destinationPoint = annotation.coordinate
+            self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
+            
+        }
+        
+    }
     
 }
 
