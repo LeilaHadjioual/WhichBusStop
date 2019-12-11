@@ -17,7 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
     
     let locationManager = CLLocationManager()
-    let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173) //pour tester l'itinéraire
+    //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173) //pour tester l'itinéraire
     let regionInMeters: Double = 500
 
     
@@ -30,10 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // Agrandir zone blanche en bas
         bottomViewHeight.constant = 0
         
-         mapView.delegate = self
-        //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173)
-        //let destinationPoint = CLLocationCoordinate2D(latitude: 45.191587, longitude: 5.714554)
-        //directionsRequest(source: sourcePoint, destination: destinationPoint)
+        mapView.delegate = self
 
     }
     
@@ -48,7 +45,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func setUpLocationManager(){
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     }
     
     
@@ -93,13 +90,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
+    var myLocation: CLLocation?
+    var isFirstLaunch: Bool = true
 //update the position of the user when he move and show buses points with itineraire
     func locationManager(_ manager:CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{return}
+        self.myLocation = location
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated:true)
-       
+        
+        if isFirstLaunch {
+            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated:true)
+            isFirstLaunch = false
+        }
       
         let api = Api()
         var stopPoints: [Stop]?
@@ -116,10 +119,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 annotation.coordinate = coordinates2D
                 annotation.title = stopName
                 annotation.subtitle = busName
-                let coordinateRegion = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
 
                 DispatchQueue.main.async {
-                    self.mapView.setRegion(coordinateRegion, animated: true)
+//                    self.mapView.setRegion(coordinateRegion, animated: true)
                     self.mapView.addAnnotation(annotation)
                   
                 }
@@ -141,7 +143,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: source, addressDictionary: nil))
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
             request.requestsAlternateRoutes = true
-            request.transportType = .walking
+        request.transportType = .walking
 
             let directions = MKDirections(request: request)
 
@@ -168,14 +170,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     
     //onclick on pine show itineraire
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let location = myLocation else{return}
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         if let annotation = view.annotation as? MKPointAnnotation {
             let destinationPoint = annotation.coordinate
-            self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
+            self.directionsRequest(source: center, destination: destinationPoint)
             
         }
-        
     }
+    
+    
     
 }
 
