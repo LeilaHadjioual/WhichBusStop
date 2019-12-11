@@ -48,7 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     //zoom automatically on the user's position
-    //rayon : 10000 m
+    //rayon : 500 m
     func centerViewOnUserLocation(){
         if let location = locationManager.location?.coordinate{
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -188,8 +188,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.mapView.removeOverlays(mapView.overlays)
         bottomViewHeight.constant = 0
     }
-    
-    
-    
+
 }
 
