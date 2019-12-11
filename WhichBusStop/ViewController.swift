@@ -16,6 +16,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var hoursLabel: UILabel!
+    
     let locationManager = CLLocationManager()
     //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173) //pour tester l'itinéraire
     let regionInMeters: Double = 500
@@ -25,10 +27,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-        
-
-        // Agrandir zone blanche en bas
-        bottomViewHeight.constant = 0
         
         mapView.delegate = self
 
@@ -179,6 +177,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.directionsRequest(source: center, destination: destinationPoint)
             
         }
+        
+        // Agrandir zone blanche en bas
+        bottomViewHeight.constant = 200
+        
+        hoursLabel.text = "10h"
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.mapView.removeOverlays(mapView.overlays)
+        bottomViewHeight.constant = 0
     }
     
     

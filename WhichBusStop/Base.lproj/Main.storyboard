@@ -20,9 +20,20 @@
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNE-tY-0AH">
                                 <rect key="frame" x="0.0" y="896" width="414" height="0.0"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlc-wd-9rd">
+                                        <rect key="frame" x="10" y="10" width="394" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="Qlc-wd-9rd" firstAttribute="top" secondItem="nNE-tY-0AH" secondAttribute="top" constant="10" id="FkG-Vn-5dB"/>
                                     <constraint firstAttribute="height" id="PyL-mS-Jo2"/>
+                                    <constraint firstItem="Qlc-wd-9rd" firstAttribute="leading" secondItem="nNE-tY-0AH" secondAttribute="leading" constant="10" id="Q1x-RK-Z1q"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qlc-wd-9rd" secondAttribute="trailing" constant="10" id="xfP-07-wr9"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -40,6 +51,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomViewHeight" destination="PyL-mS-Jo2" id="sIQ-iL-hpL"/>
+                        <outlet property="hoursLabel" destination="Qlc-wd-9rd" id="dZF-C2-ufh"/>
                         <outlet property="mapView" destination="vUi-An-NMR" id="RpY-RO-LBn"/>
                     </connections>
                 </viewController>
