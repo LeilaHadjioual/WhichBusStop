@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1B902223A0F79C00333B90 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B902123A0F79C00333B90 /* Time.swift */; };
+		4E1B902423A0F93C00333B90 /* StopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B902323A0F93C00333B90 /* StopAnnotation.swift */; };
 		4EF1BFED239640CA003ACF24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1BFEC239640CA003ACF24 /* AppDelegate.swift */; };
 		4EF1BFEF239640CA003ACF24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1BFEE239640CA003ACF24 /* SceneDelegate.swift */; };
 		4EF1BFF1239640CA003ACF24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF1BFF0239640CA003ACF24 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E1B902123A0F79C00333B90 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		4E1B902323A0F93C00333B90 /* StopAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAnnotation.swift; sourceTree = "<group>"; };
 		4EF1BFE9239640CA003ACF24 /* WhichBusStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhichBusStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF1BFEC239640CA003ACF24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF1BFEE239640CA003ACF24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				4EF1BFF7239640CF003ACF24 /* LaunchScreen.storyboard */,
 				4EF1BFFA239640CF003ACF24 /* Info.plist */,
 				995536742396782A001F6051 /* Api.swift */,
+				4E1B902323A0F93C00333B90 /* StopAnnotation.swift */,
 			);
 			path = WhichBusStop;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				9955367723967884001F6051 /* Stop.swift */,
+				4E1B902123A0F79C00333B90 /* Time.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1B902223A0F79C00333B90 /* Time.swift in Sources */,
+				4E1B902423A0F93C00333B90 /* StopAnnotation.swift in Sources */,
 				4EF1BFF1239640CA003ACF24 /* ViewController.swift in Sources */,
 				4EF1BFED239640CA003ACF24 /* AppDelegate.swift in Sources */,
 				9955367823967884001F6051 /* Stop.swift in Sources */,

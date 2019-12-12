@@ -19,10 +19,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var hoursLabel: UILabel!
     
     let locationManager = CLLocationManager()
-    //let sourcePoint = CLLocationCoordinate2D(latitude: 45.191302, longitude: 5.715173) //pour tester l'itinéraire
+    let sourcePoint = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532) //pour tester l'itinéraire
     let regionInMeters: Double = 500
-
     
+
+    let api = Api()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +103,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             isFirstLaunch = false
         }
       
-        let api = Api()
         var stopPoints: [Stop]?
         api.getStopPoint(longitude: center.longitude, latitude: center.latitude) { (stops) in
             stopPoints = stops
@@ -112,11 +112,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
                 let stopName = stop.name
                 let busName = stop.lines?.joined(separator: ", ")
-                let annotation = MKPointAnnotation()
-
+                let annotation = StopAnnotation()
+                annotation.id = stop.id
                 annotation.coordinate = coordinates2D
                 annotation.title = stopName
                 annotation.subtitle = busName
+                
 
                 DispatchQueue.main.async {
 //                    self.mapView.setRegion(coordinateRegion, animated: true)
@@ -156,7 +157,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.mapView.removeOverlays(mapView.overlays)//clear line
     }
     
-
+    func displayTimes(_ times: [Time]) {
+         bottomViewHeight.constant = 200
+        var depart = ""
+        var stopName = ""
+        times.forEach { (time) in
+            stopName = time.name!
+            depart += String(describing: time.realtimeDepart)
+            depart += " - "
+        }
+        
+        hoursLabel.text = stopName + depart
+          
+        
+      
+        
+    }
    
     //show and custom the line
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -167,22 +183,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     
-    //onclick on pine show itineraire
-    
+    //onclick on pine show itineraire and schedule bus
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let location = myLocation else{return}
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        if let annotation = view.annotation as? MKPointAnnotation {
+        if let annotation = view.annotation as? StopAnnotation {
             let destinationPoint = annotation.coordinate
-            self.directionsRequest(source: center, destination: destinationPoint)
-            
+            self.directionsRequest(source: self.sourcePoint, destination: destinationPoint)
+             //schedule
+             api.getTimeTable(stopId: annotation.id!) { (times) in
+                self.displayTimes(times!)
+            }
         }
-        
-        // Agrandir zone blanche en bas
-        bottomViewHeight.constant = 200
-        
-        hoursLabel.text = "10h"
     }
+    
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         self.mapView.removeOverlays(mapView.overlays)
